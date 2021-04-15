@@ -58,7 +58,6 @@
             icon.addEventListener('click', () => {
                 /* Get the text field */
                 let copyText = document.createElement("textarea")
-                copyText.classList.add('d-none')
                 copyText.value = icon.parentElement.firstElementChild.getAttribute('href')
 
                 document.body.appendChild(copyText)
@@ -69,6 +68,7 @@
 
                 /* Copy the text inside the text field */
                 document.execCommand("copy");
+                copyText.classList.add('d-none')
                 icon.parentElement.children[2].classList.remove('d-none')
                 setTimeout(() => {
                     icon.parentElement.children[2].classList.add('d-none')
