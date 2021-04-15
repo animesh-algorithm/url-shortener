@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="display-2">MINI.URL</h1>
+        <form method="post" class="m-3">
+            {% csrf_token %}
+            <div class="row container-fluid">
+                <div class="col-md-11">
+                    {{ form.as_p }}
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" id='submit' class="btn btn-primary">Submit</button>
+                </div>
+            </div><hr>
+            <table class="table table-dark">
+                <tr>
+                    <th>S.No</th>
+                    <th>Long URL</th>
+                    <th>Short URL</th>
+                </tr>
+                
+                {% for link in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{{ link.long_url }}" class="text-white">{{ link.long_url }}</a></td>
+                        <td><a href="{{ link.long_url }}" class="text-white">https://miniurl.com/{{ link.short_url }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+    <script>
+        document.getElementById('id_short_url').parentElement.style.display = 'none'
+        document.getElementById('submit').addEventListener('click', () => {
+            let long_url = document.getElementById('id_long_url').value
+            document.getElementById('id_short_url').value = '{{ short_url_encode }}'
+            if (!long_url.includes('https://')) {
+                long_url = 'https://' + long_url
+                document.getElementById('id_long_url').value = long_url   
+            }
+        })
+    </script>
+</body>
+</html>
