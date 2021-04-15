@@ -58,6 +58,7 @@
             icon.addEventListener('click', () => {
                 /* Get the text field */
                 let copyText = document.createElement("textarea")
+                copyText.classList.add('d-none')
                 copyText.value = icon.parentElement.firstElementChild.getAttribute('href')
 
                 document.body.appendChild(copyText)
