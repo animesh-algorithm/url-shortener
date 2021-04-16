@@ -21,21 +21,23 @@
                     <button type="submit" id='submit' class="btn btn-primary">Submit</button>
                 </div>
             </div><hr>
-            <table class="table table-dark">
-                <tr>
-                    <th>S.No</th>
-                    <th>Long URL</th>
-                    <th>Short URL</th>
-                </tr>
-                
-                {% for link in object_list %}
+            <div class="table-responsive">
+                <table class="table table-dark">
                     <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td><a href="{{ link.long_url }}" class="text-white">{{ link.long_url }}</a></td>
-                        <td><a href="https://minilinki.herokuapp.com/{{ link.short_url }}" class="text-white" id='tiny_url'>https://minilinki.com/{{ link.short_url }}</a> <ion-icon name="copy-outline"></ion-icon> <span class='copied d-none text-success'>Copied!</span></td>
+                        <th>S.No</th>
+                        <th>Long URL</th>
+                        <th>Short URL</th>
                     </tr>
-                {% endfor %}
-            </table>
+                    
+                    {% for link in object_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{{ link.long_url }}" class="text-white">{{ link.long_url }}</a></td>
+                            <td><a href="https://minilinki.herokuapp.com/{{ link.short_url }}" class="text-white" id='tiny_url'>https://minilinki.com/{{ link.short_url }}</a> <ion-icon name="copy-outline"></ion-icon> <span class='copied d-none text-success'>Copied!</span></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </form>
     </div>
     <script>
