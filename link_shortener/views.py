@@ -6,7 +6,7 @@ from .models import Link
 from .b62 import base_encode, base_decode
 
 def url(request, short_url):
-    link = Link.objects.get(short_url=short_url)
+    link = Link.objects.get(short_url=str(short_url))
     return redirect(link.long_url)
 
 class HomeView(CreateView, ListView):
