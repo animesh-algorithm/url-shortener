@@ -29,7 +29,7 @@
                         <th>Short URL</th>
                     </tr>
                     
-                    {% for link in object_list %}
+                    {% for link in object_list reversed %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td><a href="{{ link.long_url }}" class="text-white">{{ link.long_url }}</a></td>
