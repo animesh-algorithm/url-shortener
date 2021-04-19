@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class='container register'>
+    <div class="row justify-content-md-center">
+        <div class="col-md-12 col-lg-8">
+            <div class="container text-center">
+                <h1 class="display-2">MINI.URL</h1>            <br>
+            <div class="form-group text-center">
+                <form method="POST" style="font-size: medium;">
+                    {% csrf_token %}
+                    <div class="d-inline-flex" style="width: 100%;">
+                        {{ form.first_name }}
+                        {{ form.last_name }}
+                    </div>
+                    {{ form.username }}
+                    {{ form.email }}
+                    <div class="d-inline-flex" style="width: 100%;">
+                        {{ form.password1 }}
+                        {{ form.password2 }}
+                    </div>
+                    {% if form.errors %}
+                    <br>
+
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                            <br>
+                                {{ error }} 
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    <br>
+                    <p style="font-size: 20px;">Already have an account, <a href="/users/login" class="text-danger">Sign in</a></span></p>
+                    <button class='btn btn-secondary btn-lg submit' style="font-size: 20px;" type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 100vh;">
+        
+</div>
+{% endblock %}

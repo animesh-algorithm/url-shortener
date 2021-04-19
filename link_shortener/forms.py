@@ -4,7 +4,7 @@ from .models import Link
 class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
-        fields = ('long_url', 'short_url')
+        fields = ('long_url', 'short_url', 'user')
 
         labels = {
             'long_url': '',

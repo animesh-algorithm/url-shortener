@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class='container login'>
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-8">
+                <h1 class="text-center">Login</h1>
+                <br>
+                <div class="form-group text-center">
+                    <form method="POST" style="font-size: medium;">
+                        {% csrf_token %}
+                        <input class='form-control' style="font-size: 20px;" placeholder="Username" type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username"><br>
+                        <input class='form-control' style="font-size: 20px;" placeholder="Password" type="password" name="password" autocomplete="current-password" required id="id_password">
+                        <br>
+                        <p style="font-size: 20px;">Don't have an account click <a href="{% url 'register' %}" class="text-danger">Here</a></p>
+                        <button class='btn btn-secondary btn-lg submit' style="font-size: 20px;" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 100vh;">
+            
+    </div>
+{% endblock %}

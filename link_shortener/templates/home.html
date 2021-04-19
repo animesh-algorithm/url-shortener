@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TINY URL</title>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+{% extends 'main.html' %}
+{% block content %}
     <div class="container text-center">
+        <br>
         <h1 class="display-2">MINI.URL</h1>
         <form method="post" class="m-3">
             {% csrf_token %}
@@ -30,11 +22,13 @@
                     </tr>
                     
                     {% for link in object_list reversed %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td><a href="{{ link.long_url }}" class="text-white">{{ link.long_url }}</a></td>
-                            <td><a href="https://minilinki.herokuapp.com/{{ link.short_url }}" class="text-white" id='tiny_url'>https://minilinki.com/{{ link.short_url }}</a> <ion-icon name="copy-outline"></ion-icon> <span class='copied d-none text-success'>Copied!</span></td>
-                        </tr>
+                        {% if link.user == user %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><a href="{{ link.long_url }}" class="text-white">{{ link.long_url }}</a></td>
+                                <td><a href="https://minilinki.herokuapp.com/{{ link.short_url }}" class="text-white" id='tiny_url'>https://minilinki.com/{{ link.short_url }}</a> <ion-icon name="copy-outline"></ion-icon> <span class='copied d-none text-success'>Copied!</span></td>
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                 </table>
             </div>
@@ -78,5 +72,9 @@
             })
         })
     </script>
-</body>
-</html>
+    <script>
+        let name = "{{ user.id }}"
+        document.getElementById('id_user').value = name
+        document.getElementById('id_user').parentElement.style.display = 'none'
+    </script>
+{% endblock %}
